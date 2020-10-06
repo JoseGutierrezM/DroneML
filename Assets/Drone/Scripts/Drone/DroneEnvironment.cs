@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DroneEnvironment : MonoBehaviour
 {
-    void Awake()
+    /*void Awake()
     {
         SimulationManager.onStartSimulation += Activate;
         SimulationManager.onEndSimulation += Deactivate;
         gameObject.SetActive(false);
-    }
+    }*/
 
     void Activate()
     {

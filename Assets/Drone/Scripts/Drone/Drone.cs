@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class Drone : MonoBehaviour
 {
+    public static Action onDroneMove;
     public static Action<bool> onLandingResult;
 
-    Rigidbody droneRigidbody;
+    public Rigidbody droneRigidbody;
     DroneBodyData dronebodyData;
     List<DroneMotor> motors;
     public DroneInfo Information { get; private set; } 
@@ -38,6 +39,7 @@ public class Drone : MonoBehaviour
         Information.currentSpeed = 0;
         droneRigidbody.velocity = Vector3.zero;
         droneState = DroneState.Flying;
+        onDroneMove?.Invoke();
     }
 
     public void MoveVertically(float _verticalInput)
@@ -57,6 +59,7 @@ public class Drone : MonoBehaviour
         {
             VerifyHeight();
         }
+        onDroneMove?.Invoke();
     }
 
     void VerifyHeight()

@@ -24,7 +24,7 @@ public class CanvasManager : MonoSingleton<CanvasManager>
         SimulationManager.onSetUpSimulation += ActivateSetUpPanel;
         SimulationManager.onStartSimulation += ActivateInformationPanel;
         //SimulationManager.onEndSimulation += ActivateEndSimulationPanel;
-        Drone.onLandingResult += EndSimulation;
+        //Drone.onLandingResult += EndSimulation;
     }
 
     void ChangePanel(DronePanelUI _newPanel)

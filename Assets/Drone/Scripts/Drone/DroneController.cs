@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class DroneController : MonoBehaviour
 {
-    public static Action onDroneMove;
     Drone drone;
+
     [SerializeField] Vector3 droneInitialPosition = new Vector3( 0, 50, 0);
 
     void Awake()
@@ -31,8 +31,10 @@ public class DroneController : MonoBehaviour
 
     void FixedUpdate()
     {
-        VerticalMovement();
-        onDroneMove?.Invoke();
+        if (!SimulationManager.GetInstance().IsAgentActive)
+        {
+            VerticalMovement();
+        }
     }
 
     void VerticalMovement()

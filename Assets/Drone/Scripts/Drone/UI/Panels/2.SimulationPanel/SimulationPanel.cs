@@ -7,7 +7,7 @@ public class SimulationPanel : DronePanelUI
     protected override void Awake()
     {
         base.Awake();
-        DroneController.onDroneMove += UpdateDroneFieldsValues;
+        Drone.onDroneMove += UpdateDroneFieldsValues;
     }
 
     public override void UpdateDroneFieldsValues()
