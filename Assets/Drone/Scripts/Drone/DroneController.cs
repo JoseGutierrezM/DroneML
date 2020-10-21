@@ -31,7 +31,7 @@ public class DroneController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!SimulationManager.GetInstance().IsAgentActive)
+        if (!SimulationManager.GetInstance().SimulationMode)
         {
             VerticalMovement();
         }
@@ -40,6 +40,8 @@ public class DroneController : MonoBehaviour
     void VerticalMovement()
     {
         float verticalInput = Mathf.Clamp(Input.GetAxis("Vertical"), -1, 1);
-        drone.MoveVertically(verticalInput);
+
+        drone.verticalInput = verticalInput;
+        //drone.MoveVertically(verticalInput);
     }
-}
+} 

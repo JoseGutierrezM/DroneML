@@ -10,7 +10,7 @@ public class SimulationManager : MonoSingleton<SimulationManager>
     public static Action onEndSimulation;
 
     public SimulationState simulationState;
-    public bool IsAgentActive;
+    public bool SimulationMode;
 
     protected override void Awake()
     {

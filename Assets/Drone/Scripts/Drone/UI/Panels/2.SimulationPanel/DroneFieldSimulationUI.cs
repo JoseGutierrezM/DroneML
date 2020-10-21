@@ -21,5 +21,6 @@ public enum DroneFieldSimulation
 {
     Speed,
     Height,
-    Drone_State
+    Drone_State,
+    Distance_To_Target
 }

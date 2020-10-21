@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class DroneTarget : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    DroneAgent agent = null;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] float goalReward = 0.1f;
+
+    void OnTriggerEnter(Collider collider)
     {
-        
+        if (collider.transform.tag == "Drone")
+        {
+            agent = collider.transform.parent.GetComponent<DroneAgent>();
+            agent.AddPositiveReward(goalReward);
+        }
     }
 }

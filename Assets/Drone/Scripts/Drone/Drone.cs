@@ -34,6 +34,38 @@ public class Drone : MonoBehaviour
         }
     }
 
+
+    void FixedUpdate()
+    {
+        ApplyMovement();
+    }
+
+    public float verticalInput;
+
+    public void ApplyMovement()
+    {
+        /*if (Input.GetKey(KeyCode.UpArrow))
+        {
+            actionsOut[0] = 1;
+        }
+
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            actionsOut[0] = 2;
+        }*/
+        if(Input.GetAxis("Vertical") != 0)
+        {
+            verticalInput = Mathf.Clamp(Input.GetAxis("Vertical"), -1, 1);
+        }
+
+        //verticalInput = Mathf.Clamp(Input.GetAxis("Vertical"), -1, 1);
+        if(Input.GetAxis("Vertical") != 0 || !SimulationManager.GetInstance().SimulationMode)
+        {
+            MoveVertically(verticalInput);
+        }
+    }
+
+
     public void SetInitialValues()
     {
         Information.currentSpeed = 0;
@@ -69,12 +101,14 @@ public class Drone : MonoBehaviour
         {
             Debug.DrawRay(transform.position, Vector3.up, Color.red, 1);
             droneState = DroneState.Crashing;
+            Information.distanceToTarget = Vector3.Distance(transform.position, hit.transform.position);
             onLandingResult?.Invoke(false);
         }
         else if (Physics.Raycast(transform.position, Vector3.down, out hit, Information.verticalDistance, layer))
         {
             Debug.DrawRay(transform.position, Vector3.down, Color.blue, 1);
-            droneState = DroneState.Landing; 
+            droneState = DroneState.Landing;
+            Information.distanceToTarget = Vector3.Distance(transform.position, hit.transform.position);
             VerifyLanding();
         }
         else
@@ -102,6 +136,9 @@ public class Drone : MonoBehaviour
 
 public enum DroneState
 {
+    Idle,
+    MoveUp,
+    MoveDown,
     Flying, 
     Landing, 
     Crashing

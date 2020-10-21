@@ -14,6 +14,7 @@ public class SimulationPanel : DronePanelUI
     {
         droneFieldsDictionary[DroneFieldSimulation.Speed.ToString()].SetValue(drone.Information.currentSpeed.ToString("0.00"));
         droneFieldsDictionary[DroneFieldSimulation.Height.ToString()].SetValue(drone.Information.currentHeight.ToString("0.00"));
+        droneFieldsDictionary[DroneFieldSimulation.Distance_To_Target.ToString()].SetValue(drone.Information.currentHeight.ToString("0.00"));
         droneFieldsDictionary[DroneFieldSimulation.Drone_State.ToString()].SetValue(drone.droneState.ToString());
     }
 }
