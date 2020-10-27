@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DroneTarget : MonoBehaviour
 {
-    DroneAgent agent = null;
+    DroneAgent droneAgent = null;
 
     [SerializeField] float goalReward = 0.1f;
 
@@ -12,8 +12,9 @@ public class DroneTarget : MonoBehaviour
     {
         if (collider.transform.tag == "Drone")
         {
-            agent = collider.transform.parent.GetComponent<DroneAgent>();
-            agent.AddPositiveReward(goalReward);
+            droneAgent = collider.transform.parent.GetComponent<DroneAgent>();
+            droneAgent.AddPositiveReward(droneAgent.drone.Information.currentSpeed * goalReward + 2);
+            //if (drone.Information.currentSpeed > drone.Information.landingVelocity && drone.Information.currentSpeed < 0)          
         }
     }
 }

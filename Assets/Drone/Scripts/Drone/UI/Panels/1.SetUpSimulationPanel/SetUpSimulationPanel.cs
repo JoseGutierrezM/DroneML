@@ -28,7 +28,10 @@ public class SetUpSimulationPanel : DronePanelUI
 
     public void SetUpDrone()
     {
-        drone.SetUpDrone(dronesData[currentDrone]);
+        foreach(Drone drone in drones)
+        {
+            drone.SetUpDrone(dronesData[currentDrone]);
+        }
         simulationManager.InitializeSimulation();
     }
 

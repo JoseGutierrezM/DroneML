@@ -19,7 +19,7 @@ public class DroneController : MonoBehaviour
 
     void ActivateDrone()
     {
-        transform.position = droneInitialPosition;
+        //transform.position = droneInitialPosition;
         drone.SetInitialValues();
         gameObject.SetActive(true);
     }

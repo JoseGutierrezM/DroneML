@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class DroneAgent : Agent
 {
-    Drone drone;
+    public Drone drone;
 
     [SerializeField] Vector3 droneInitialPosition = new Vector3(0, 50, 0);
 
@@ -18,7 +18,7 @@ public class DroneAgent : Agent
     public override void Initialize()
     {
         drone = GetComponent<Drone>();
-        //droneInitialPosition = transform.localPosition;
+        droneInitialPosition = transform.position;
     }
 
     public override void OnEpisodeBegin()
@@ -47,13 +47,13 @@ public class DroneAgent : Agent
         //drone.MoveVertically(vectorAction[0]);
         //float distanceFromTarget = Mathf.Abs(transform.position.y - target.transform.position.y);
         // if (distanceFromTarget <= distanceRequired)
-
         drone.verticalInput = vectorAction[0];
 
         if (drone.Information.currentHeight < 2)
         {
             if (drone.Information.currentSpeed > drone.Information.landingVelocity && drone.Information.currentSpeed < 0)
             {
+                Debug.Log("Succesful Message");
                 AddPositiveReward(1);
                 EndEpisode();
             }
@@ -70,10 +70,6 @@ public class DroneAgent : Agent
         //actionsOut[0] = Input.GetAxis("Vertical");
         //Mathf.Clamp(Input.GetAxis("Vertical"), -1, 1);  
 
-        /*if (Input.GetAxis("Vertical"))
-        {
-
-        }*/
         /*actionsOut[0] = 0;
 
         if (Input.GetKey(KeyCode.UpArrow))
@@ -94,8 +90,8 @@ public class DroneAgent : Agent
 
     public void AddPositiveReward(float amount = 1.0f, bool isFinal = false)
     {
-        SetReward(amount);
-        //AddReward(amount);
+        //SetReward(amount);
+        AddReward(amount);
 
         if (isFinal)
         {

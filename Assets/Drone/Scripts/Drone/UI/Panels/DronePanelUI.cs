@@ -1,16 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class DronePanelUI : MonoBehaviour
 {
-    protected Drone drone;
+    DroneTraining droneTraining;
+    public List<Drone> drones;
     protected Dictionary<string, DroneFieldUI> droneFieldsDictionary;
     protected SimulationManager simulationManager;
 
     protected virtual void Awake()
     {
-        drone = FindObjectOfType<Drone>(); 
+        //drone = FindObjectOfType<Drone>(); 
+        droneTraining = FindObjectOfType<DroneTraining>();
+        drones = droneTraining.gameObject.GetComponentsInChildren<Drone>().ToList();
         droneFieldsDictionary = new Dictionary<string, DroneFieldUI>();
         foreach (DroneFieldUI _element in GetComponentsInChildren<DroneFieldUI>(true))
         {

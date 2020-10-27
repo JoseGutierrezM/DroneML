@@ -9,8 +9,8 @@ public class Drone : MonoBehaviour
     public static Action<bool> onLandingResult;
 
     public Rigidbody droneRigidbody;
-    DroneBodyData dronebodyData;
-    List<DroneMotor> motors;
+    [SerializeField] DroneBodyData dronebodyData;
+    [SerializeField] List<DroneMotor> motors;
     public DroneInfo Information { get; private set; } 
 
     [SerializeField] LayerMask layer;
@@ -33,7 +33,6 @@ public class Drone : MonoBehaviour
             droneMotor.SetUpMotor(_droneData.droneMotorData, droneRigidbody);
         }
     }
-
 
     void FixedUpdate()
     {
@@ -59,16 +58,16 @@ public class Drone : MonoBehaviour
         }
 
         //verticalInput = Mathf.Clamp(Input.GetAxis("Vertical"), -1, 1);
-        if(Input.GetAxis("Vertical") != 0 || !SimulationManager.GetInstance().SimulationMode)
+        if(Input.GetAxis("Vertical") != 0 || SimulationManager.GetInstance().SimulationMode)
         {
             MoveVertically(verticalInput);
         }
     }
 
-
     public void SetInitialValues()
     {
-        Information.currentSpeed = 0;
+        Information.currentSpeed = 0; 
+        Information.currentHeight = transform.position.y;
         droneRigidbody.velocity = Vector3.zero;
         droneState = DroneState.Flying;
         onDroneMove?.Invoke();
@@ -86,12 +85,11 @@ public class Drone : MonoBehaviour
 
         Information.currentSpeed = droneRigidbody.velocity.y;
         Information.currentHeight = transform.position.y;
-
-        if(Information.currentSpeed != 0)
+        /*if(Information.currentSpeed != 0)
         {
             VerifyHeight();
         }
-        onDroneMove?.Invoke();
+        onDroneMove?.Invoke();*/
     }
 
     void VerifyHeight()
@@ -102,14 +100,14 @@ public class Drone : MonoBehaviour
             Debug.DrawRay(transform.position, Vector3.up, Color.red, 1);
             droneState = DroneState.Crashing;
             Information.distanceToTarget = Vector3.Distance(transform.position, hit.transform.position);
-            onLandingResult?.Invoke(false);
+            //onLandingResult?.Invoke(false);
         }
         else if (Physics.Raycast(transform.position, Vector3.down, out hit, Information.verticalDistance, layer))
         {
             Debug.DrawRay(transform.position, Vector3.down, Color.blue, 1);
             droneState = DroneState.Landing;
             Information.distanceToTarget = Vector3.Distance(transform.position, hit.transform.position);
-            VerifyLanding();
+            //VerifyLanding();
         }
         else
         {
