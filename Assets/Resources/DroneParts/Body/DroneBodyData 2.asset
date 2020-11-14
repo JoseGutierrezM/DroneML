@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   droneMass: 1
   dragForce: 0
-  maxSpeed: 5
-  minSpeed: 0
+  maxVerticalSpeed: 10
+  maxHorizontalSpeed: 10

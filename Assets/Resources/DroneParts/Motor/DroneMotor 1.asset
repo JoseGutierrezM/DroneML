@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ee984d7219e404ba85ca3fdd546fee, type: 3}
   m_Name: DroneMotor 1
   m_EditorClassIdentifier: 
-  verticalForce: 10
+  verticalForce: 5
+  horizontalForce: 5
   motorsQuantity: 2
-  forceModeType: 0
+  forceModeType: 1

@@ -47,7 +47,7 @@ public class DroneAgent : Agent
         //drone.MoveVertically(vectorAction[0]);
         //float distanceFromTarget = Mathf.Abs(transform.position.y - target.transform.position.y);
         // if (distanceFromTarget <= distanceRequired)
-        drone.verticalInput = vectorAction[0];
+        drone.verticalInputY = vectorAction[0];
 
         if (drone.Information.currentHeight < 2)
         {

@@ -12,6 +12,9 @@ public class DroneBodyData : ScriptableObject
     [Range(0.1f, 25)]
     public float dragForce;
 
-    [Range(5, 50)]
-    public float maxSpeed;
+    [Range(1, 50)]
+    public float maxVerticalSpeed;
+
+    [Range(1, 50)]
+    public float maxHorizontalSpeed;
 }

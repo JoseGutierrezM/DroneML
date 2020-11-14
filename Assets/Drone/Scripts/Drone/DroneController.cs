@@ -41,7 +41,7 @@ public class DroneController : MonoBehaviour
     {
         float verticalInput = Mathf.Clamp(Input.GetAxis("Vertical"), -1, 1);
 
-        drone.verticalInput = verticalInput;
+        drone.verticalInputY = verticalInput;
         //drone.MoveVertically(verticalInput);
     }
 } 

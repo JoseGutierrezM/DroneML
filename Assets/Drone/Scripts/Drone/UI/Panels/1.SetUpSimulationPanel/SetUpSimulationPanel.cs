@@ -68,7 +68,7 @@ public class SetUpSimulationPanel : DronePanelUI
         droneFieldsDictionary[DroneFieldSetUpSimulation.Drone_Name.ToString()].SetValue(dronesData[currentDrone].name);
         droneFieldsDictionary[DroneFieldSetUpSimulation.Drone_Mass.ToString()].SetValue(dronesData[currentDrone].droneBodyData.droneMass.ToString("0.00"));
         droneFieldsDictionary[DroneFieldSetUpSimulation.Drag_Force.ToString()].SetValue(dronesData[currentDrone].droneBodyData.dragForce.ToString("0.00"));
-        droneFieldsDictionary[DroneFieldSetUpSimulation.Max_Speed.ToString()].SetValue(dronesData[currentDrone].droneBodyData.maxSpeed.ToString("0.00"));
+        droneFieldsDictionary[DroneFieldSetUpSimulation.Max_Speed.ToString()].SetValue(dronesData[currentDrone].droneBodyData.maxVerticalSpeed.ToString("0.00"));
         droneFieldsDictionary[DroneFieldSetUpSimulation.Motor_Force.ToString()].SetValue(dronesData[currentDrone].droneMotorData.verticalForce.ToString("0.00"));
         droneFieldsDictionary[DroneFieldSetUpSimulation.Number_of_Motors.ToString()].SetValue(dronesData[currentDrone].droneMotorData.motorsQuantity.ToString());
     }

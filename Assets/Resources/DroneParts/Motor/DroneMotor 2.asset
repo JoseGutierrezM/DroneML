@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: DroneMotor 2
   m_EditorClassIdentifier: 
   verticalForce: 10
+  horizontalForce: 10
   motorsQuantity: 2
   forceModeType: 0
