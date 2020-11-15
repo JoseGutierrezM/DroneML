@@ -41,55 +41,29 @@ public class Drone : MonoBehaviour
         }
     }
 
-    bool canMove;
-
     public void SetInitialValues()
     {
-        canMove = false;
-        Debug.Log("Initial values");
         verticalInputY = horizontalInputX = horizontalInputZ = 0;
         transform.position = droneInitialPosition;
         droneRigidbody.angularVelocity = Vector3.zero;
         droneRigidbody.velocity = Vector3.zero;
         transform.rotation = Quaternion.Euler(Vector3.zero);
-        Debug.Log(transform.rotation);
+
         Information.currentSpeed = 0;
         Information.currentHeight = transform.position.y;
         droneState = DroneState.Flying;
         onDroneMove?.Invoke();
-        canMove = true;
     }
 
     void FixedUpdate()
     {
-        //if (canMove)
-        {
-            //if (Input.GetAxis("Vertical") != 0)
-            {
-                verticalInputY = Mathf.Clamp(Input.GetAxis("Vertical"), -1, 1);
-            }
-            //if (Input.GetAxis("HorizontalX") != 0)
-            {
-                horizontalInputX = Mathf.Clamp(Input.GetAxis("HorizontalX"), -1, 1);
-            }
-            //if (Input.GetAxis("HorizontalZ") != 0)
-            {
-                horizontalInputZ = Mathf.Clamp(Input.GetAxis("HorizontalZ"), -1, 1);
-            }
+        verticalInputY = Input.GetAxis("Vertical");
+        horizontalInputX = Input.GetAxis("HorizontalX");
+        horizontalInputZ = Input.GetAxis("HorizontalZ");
 
-            //if (Input.GetAxis("Vertical") != 0 || SimulationManager.GetInstance().SimulationMode)
-            {
-                MoveVertically(verticalInputY);
-            }
-            //if (Input.GetAxis("HorizontalX") != 0 || SimulationManager.GetInstance().SimulationMode)
-            {
-                MoveHorizontallyX(horizontalInputX);
-            }
-            //if (Input.GetAxis("HorizontalZ") != 0 || SimulationManager.GetInstance().SimulationMode)
-            {
-                MoveHorizontallyZ(horizontalInputZ);
-            }
-        }
+        Vector3 input = new Vector3(horizontalInputX, verticalInputY, horizontalInputZ);
+        MoveDrone(input);
+
         var velocity = droneRigidbody.velocity;
 
         velocity.x = Mathf.Clamp(velocity.x, -dronebodyData.maxHorizontalSpeed, dronebodyData.maxHorizontalSpeed);
@@ -97,51 +71,13 @@ public class Drone : MonoBehaviour
         velocity.z = Mathf.Clamp(velocity.z, -dronebodyData.maxHorizontalSpeed, dronebodyData.maxHorizontalSpeed);
 
         droneRigidbody.velocity = velocity;
-
     }
 
     void MoveDrone(Vector3 _inputForce)
     {
-    }
-
-    public void MoveVertically(float _verticalInput)
-    {
-        //if(droneRigidbody.velocity.y < dronebodyData.maxVerticalSpeed)
+        foreach (DroneMotor droneMotor in motors)
         {
-            foreach (DroneMotor droneMotor in motors)
-            {
-                droneMotor.ApplyVerticalForce(_verticalInput);
-            }
-        }
-
-        Information.currentSpeed = droneRigidbody.velocity.y;
-        Information.currentHeight = transform.position.y;
-        /*if(Information.currentSpeed != 0)
-        {
-            VerifyHeight();
-        }
-        onDroneMove?.Invoke();*/
-    }
-
-    public void MoveHorizontallyX(float _horizontalInput)
-    {
-        //if (droneRigidbody.velocity.x < dronebodyData.maxHorizontalSpeed && droneRigidbody.velocity.x > -dronebodyData.maxHorizontalSpeed)
-        {
-            foreach (DroneMotor droneMotor in motors)
-            {
-                droneMotor.ApplyHorizontalForceX(_horizontalInput);
-            }
-        }
-    }
-
-    public void MoveHorizontallyZ(float _horizontalInput)
-    {
-        //if (droneRigidbody.velocity.z < dronebodyData.maxHorizontalSpeed)
-        {
-            foreach (DroneMotor droneMotor in motors)
-            {
-                droneMotor.ApplyHorizontalForceZ(_horizontalInput);
-            }
+            droneMotor.ApplyForce(_inputForce);
         }
     }
 

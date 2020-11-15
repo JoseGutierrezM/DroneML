@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186c68b405801ed4db08e1507bb95640, type: 3}
   m_Name: DroneBodyData 1
   m_EditorClassIdentifier: 
-  droneMass: 1
-  dragForce: 0
-  maxVerticalSpeed: 10
+  droneMass: 10
+  dragForce: 1
+  maxVerticalSpeed: 5
   maxHorizontalSpeed: 10

@@ -18,47 +18,17 @@ public class DroneMotor : MonoBehaviour
         
     }
 
-    public void ApplyVerticalForce(float _verticalInput)
+    public void ApplyForce(Vector3 _inputForce)
     {
-        float verticalForce = droneMotorData.verticalForce;
-
+        Vector3 dir = new Vector3(_inputForce.x * droneMotorData.horizontalForce, _inputForce.y * droneMotorData.verticalForce, _inputForce.z * droneMotorData.horizontalForce);
+        
         switch (droneMotorData.forceModeType)
         {
             case ForceModeType.Force:
-                droneRigidbody.AddForceAtPosition(transform.up * verticalForce * _verticalInput, transform.position, ForceMode.Force);
+                droneRigidbody.AddForceAtPosition(dir, transform.position, ForceMode.Force);
                 break;
             case ForceModeType.Impulse:
-                droneRigidbody.AddForceAtPosition(transform.up * verticalForce * _verticalInput, transform.position, ForceMode.Impulse);
-                break;
-        }
-    }
-
-    public void ApplyHorizontalForceX(float _horizontalInput)
-    {
-        float horizontalForceX = droneMotorData.horizontalForce;
-
-        switch (droneMotorData.forceModeType)
-        {
-            case ForceModeType.Force:
-                droneRigidbody.AddForceAtPosition(transform.right * horizontalForceX * _horizontalInput, transform.position, ForceMode.Force);
-                break;
-            case ForceModeType.Impulse:
-                droneRigidbody.AddForceAtPosition(transform.right * horizontalForceX * _horizontalInput, transform.position, ForceMode.Impulse);
-                break;
-        }
-    }
-
-    public void ApplyHorizontalForceZ(float _horizontalInput)
-    {
-        float horizontalForceZ = droneMotorData.horizontalForce;
-
-        switch (droneMotorData.forceModeType)
-        {
-            case ForceModeType.Force:
-                droneRigidbody.AddForceAtPosition(transform.forward * horizontalForceZ * _horizontalInput, transform.position, ForceMode.Force);
-                break;
-            case ForceModeType.Impulse:
-                droneRigidbody.AddForceAtPosition(transform.forward * horizontalForceZ * _horizontalInput, transform.position, ForceMode.Impulse);
+                droneRigidbody.AddForceAtPosition(dir, transform.position, ForceMode.Impulse);
                 break;
         }
     }
