@@ -13,7 +13,11 @@ public class DroneAgent : Agent
 
     [SerializeField] DroneTarget target;
 
-    [SerializeField] float distanceRequired = 6.5f;   
+    [SerializeField] float distanceRequired = 6.5f;
+
+    [SerializeField] int timer = 0;
+
+    public float timeReward = -0.001f;
 
     public override void Initialize()
     {
@@ -25,21 +29,34 @@ public class DroneAgent : Agent
     {
         transform.position = droneInitialPosition;
         drone.SetInitialValues();
+        timer = 0;
     }
 
     void Update()
     {
-        if (transform.localPosition.y <= 0)
-        {
-            AddNegativeReward(0.01f);
-        }
+        timer++;
     }
+
+    /*void FixedUpdate()
+    {
+        if (transform.localPosition.y >= 0)
+        //if(SimulationManager.GetInstance().SimulationMode)
+        {
+            AddNegativeReward(-0.001f);
+        }
+    }*/
 
     public override void CollectObservations(VectorSensor sensor)
     {
         sensor.AddObservation(transform.position);
 
+        //sensor.AddObservation(target.gameObject.transform.position);
+
+        sensor.AddObservation(drone.droneRigidbody.velocity.x);
+
         sensor.AddObservation(drone.droneRigidbody.velocity.y);
+
+        sensor.AddObservation(drone.droneRigidbody.velocity.z);
     }
 
     public override void OnActionReceived(float[] vectorAction)
@@ -47,7 +64,9 @@ public class DroneAgent : Agent
         //drone.MoveVertically(vectorAction[0]);
         //float distanceFromTarget = Mathf.Abs(transform.position.y - target.transform.position.y);
         // if (distanceFromTarget <= distanceRequired)
-        drone.verticalInputY = vectorAction[0];
+        drone.verticalInputY = vectorAction[0]; 
+        drone.horizontalInputX = vectorAction[1];
+        drone.horizontalInputZ = vectorAction[2];
 
         if (drone.Information.currentHeight < 2)
         {
@@ -55,13 +74,13 @@ public class DroneAgent : Agent
             {
                 Debug.Log("Succesful Message");
                 AddPositiveReward(1);
-                EndEpisode();
+                EndEpisodeTimer();
             }
         }
 
         if (transform.position.y < 0 || transform.position.y < target.transform.position.y || transform.position.y >= 90)
         {
-            EndEpisode();
+            EndEpisodeTimer();
         }
     }
 
@@ -82,10 +101,9 @@ public class DroneAgent : Agent
             actionsOut[0] = -1;
         }*/
 
-        if (Input.GetAxis("Vertical") != 0)
-        {
-            actionsOut[0] = Mathf.Clamp(Input.GetAxis("Vertical"), -1, 1);
-        }
+        actionsOut[0] = Input.GetAxis("Vertical");
+        actionsOut[1] = Input.GetAxis("HorizontalX");
+        actionsOut[2] = Input.GetAxis("HorizontalZ");
     }
 
     public void AddPositiveReward(float amount = 1.0f, bool isFinal = false)
@@ -95,14 +113,19 @@ public class DroneAgent : Agent
 
         if (isFinal)
         {
-            EndEpisode();
+            EndEpisodeTimer();
         }
     }
 
     public void AddNegativeReward(float amount = -0.01f)
     {
         AddReward(amount);
+        EndEpisodeTimer();
+    }
 
+    public void EndEpisodeTimer()
+    {
+        AddReward(timer * timeReward);
         EndEpisode();
     }
 }

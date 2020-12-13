@@ -1,0 +1,41 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1606006544",
+        "python_version": "3.8.6 (tags/v3.8.6:db45529, Sep 23 2020, 15:52:53) [MSC v.1927 64 bit (AMD64)]",
+        "command_line_arguments": "D:\\Projects\\VirtualEnviroments\\UnityMLAgentsTestEnv\\Scripts\\mlagents-learn .\\DroneFly.yaml --run-id=DroneFly12",
+        "mlagents_version": "0.17.0",
+        "mlagents_envs_version": "0.17.0",
+        "communication_protocol_version": "1.0.0",
+        "tensorflow_version": "2.2.0",
+        "end_time_seconds": "1606006624"
+    },
+    "total": 80.47428359999998,
+    "count": 1,
+    "self": 2.698497599999996,
+    "children": {
+        "run_training.setup": {
+            "total": 0.7078430999999981,
+            "count": 1,
+            "self": 0.7078430999999981
+        },
+        "TrainerController.start_learning": {
+            "total": 77.06794289999999,
+            "count": 1,
+            "self": 0.00769639999998617,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 77.060036,
+                    "count": 1,
+                    "self": 77.060036
+                },
+                "TrainerController._save_model": {
+                    "total": 0.00021050000000855107,
+                    "count": 1,
+                    "self": 0.00021050000000855107
+                }
+            }
+        }
+    }
+}

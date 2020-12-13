@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4125087f8e630a41b6808af86e5bdd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drones: []
 --- !u!114 &4774039576278792668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,7 +757,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 200}
+  m_AnchoredPosition: {x: 0, y: 185}
   m_SizeDelta: {x: 350, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4629815837803485413
@@ -1462,7 +1463,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -210}
+  m_AnchoredPosition: {x: 0, y: -202}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1468760650889446418
@@ -1736,6 +1737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34a622b387af19545807c78ab7fa8b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drones: []
 --- !u!1 &5554458427592226569
 GameObject:
   m_ObjectHideFlags: 0
@@ -2382,6 +2384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eed80690fff68c14a87a263aca891724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drones: []
 --- !u!114 &8752246844521876708
 MonoBehaviour:
   m_ObjectHideFlags: 0

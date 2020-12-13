@@ -57,9 +57,12 @@ public class Drone : MonoBehaviour
 
     void FixedUpdate()
     {
-        verticalInputY = Input.GetAxis("Vertical");
-        horizontalInputX = Input.GetAxis("HorizontalX");
-        horizontalInputZ = Input.GetAxis("HorizontalZ");
+        if (!SimulationManager.GetInstance().SimulationMode)
+        {
+            verticalInputY = Input.GetAxis("Vertical");
+            horizontalInputX = Input.GetAxis("HorizontalX");
+            horizontalInputZ = Input.GetAxis("HorizontalZ");
+        }
 
         Vector3 input = new Vector3(horizontalInputX, verticalInputY, horizontalInputZ);
         MoveDrone(input);
@@ -71,6 +74,9 @@ public class Drone : MonoBehaviour
         velocity.z = Mathf.Clamp(velocity.z, -dronebodyData.maxHorizontalSpeed, dronebodyData.maxHorizontalSpeed);
 
         droneRigidbody.velocity = velocity;
+
+        Information.currentSpeed = droneRigidbody.velocity.y;
+        Information.currentHeight = transform.position.y;
     }
 
     void MoveDrone(Vector3 _inputForce)
