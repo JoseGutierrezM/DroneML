@@ -9,11 +9,13 @@ public class SimulationManager : MonoSingleton<SimulationManager>
     public static Action onStartSimulation;
     public static Action onEndSimulation;
 
+    [SerializeField] DroneCamera droneCamera;
     public SimulationState simulationState;
     public bool SimulationMode;
 
     protected override void Awake()
     {
+        droneCamera = Camera.main.GetComponent<DroneCamera>();
         SetUpSimulation();
     }
 
@@ -25,12 +27,14 @@ public class SimulationManager : MonoSingleton<SimulationManager>
 
     public void InitializeSimulation()
     {
+        droneCamera.StartCameraMovement();
         simulationState = SimulationState.Simulation;
         onStartSimulation?.Invoke();
     }
 
     public void EndSimulation()
     {
+        droneCamera.StopCameraMovement();
         simulationState = SimulationState.EndSimulation;
         onEndSimulation?.Invoke();
     }
