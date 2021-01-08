@@ -66,10 +66,10 @@ public class DroneAgent : Agent
         drone.horizontalInputX = vectorAction[1];
         drone.horizontalInputZ = vectorAction[2];
 
-        if (transform.position.y < 0 || transform.position.y < target.transform.position.y || transform.position.y >= 90)
+        /*if (transform.position.y < 0 || transform.position.y < target.transform.position.y || transform.position.y >= 90)
         {
             EndEpisodeTimer();
-        }
+        }*/
     }
 
     public override void Heuristic(float[] actionsOut)
@@ -79,13 +79,10 @@ public class DroneAgent : Agent
         actionsOut[2] = Input.GetAxis("HorizontalZ");
     }
 
-    public void AddPositiveReward(float amount = 1.0f, bool isFinal = false)
+    public void AddPositiveReward(float amount = 1.0f)
     {
         AddReward(amount);
-        if (isFinal)
-        {
-            EndEpisodeTimer();
-        }
+        EndEpisodeTimer();
     }
 
     public void AddNegativeReward(float amount = -0.01f)
@@ -97,8 +94,8 @@ public class DroneAgent : Agent
     public void EndEpisodeTimer()
     {
         AddReward(timer * timeReward);
-        float distanceToTarget = Vector3.Distance(transform.position, target.gameObject.transform.position);
-        AddReward((100 - distanceToTarget) * distanceReward);
+        /*float distanceToTarget = Vector3.Distance(transform.position, target.gameObject.transform.position);
+        AddReward((100 - distanceToTarget) * distanceReward);*/
         EndEpisode();
     }
 }
