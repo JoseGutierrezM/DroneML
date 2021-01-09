@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83682c59246a9a04a8673c4c67eb35eb, type: 3}
+  m_Name: Drone 3
+  m_EditorClassIdentifier: 
+  droneBodyData: {fileID: 11400000, guid: 3432ff45f7d58f44da69d91ea101114f, type: 2}
+  droneMotorData: {fileID: 11400000, guid: 3d9850de099151448a0d396dd9a38888, type: 2}
