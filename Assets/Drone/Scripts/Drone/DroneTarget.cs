@@ -14,9 +14,7 @@ public class DroneTarget : MonoBehaviour
         {
             Debug.Log(collider.transform.parent.parent.name);
             droneAgent = collider.transform.parent.GetComponent<DroneAgent>();
-            droneAgent.AddPositiveReward(droneAgent.drone.Information.currentSpeed * goalReward + 4);
-            //droneAgent.AddPositiveReward(goalReward);
-            //if (drone.Information.currentSpeed > drone.Information.landingVelocity && drone.Information.currentSpeed < 0)          
+            droneAgent.AddPositiveReward(droneAgent.drone.Information.currentSpeed * -goalReward + 4);
         }
     }
 }

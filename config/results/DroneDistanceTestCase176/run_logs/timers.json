@@ -1,0 +1,89 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1613352326",
+        "python_version": "3.8.7 (tags/v3.8.7:6503f05, Dec 21 2020, 17:59:51) [MSC v.1928 64 bit (AMD64)]",
+        "command_line_arguments": "D:\\Machine Learning\\UnityVirtualEnvironments\\MLDroneEnv\\Scripts\\mlagents-learn .\\DroneFly.yaml --run-id=DroneDistanceTestCase176",
+        "mlagents_version": "0.23.0",
+        "mlagents_envs_version": "0.23.0",
+        "communication_protocol_version": "1.3.0",
+        "pytorch_version": "1.6.0+cu101",
+        "numpy_version": "1.19.5",
+        "end_time_seconds": "1613352355"
+    },
+    "total": 29.1072583,
+    "count": 1,
+    "self": 0.007870700000001563,
+    "children": {
+        "run_training.setup": {
+            "total": 0.019912699999999894,
+            "count": 1,
+            "self": 0.019912699999999894
+        },
+        "TrainerController.start_learning": {
+            "total": 29.0794749,
+            "count": 1,
+            "self": 0.00014559999999974593,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 29.0769023,
+                    "count": 1,
+                    "self": 15.6444477,
+                    "children": {
+                        "demo_to_buffer": {
+                            "total": 13.4324546,
+                            "count": 1,
+                            "self": 4.510000000124137e-05,
+                            "children": {
+                                "load_demonstration": {
+                                    "total": 8.7667563,
+                                    "count": 1,
+                                    "self": 8.759012400000003,
+                                    "children": {
+                                        "read_file": {
+                                            "total": 0.007743899999997694,
+                                            "count": 1,
+                                            "self": 0.007743899999997694
+                                        }
+                                    }
+                                },
+                                "make_demo_buffer": {
+                                    "total": 4.665653199999998,
+                                    "count": 1,
+                                    "self": 0.4409397000000652,
+                                    "children": {
+                                        "steps_from_proto": {
+                                            "total": 4.2247134999999325,
+                                            "count": 10594,
+                                            "self": 0.6689514000001857,
+                                            "children": {
+                                                "_process_vector_observation": {
+                                                    "total": 3.555762099999747,
+                                                    "count": 84752,
+                                                    "self": 3.555762099999747
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "TrainerController._save_models": {
+                    "total": 0.002427000000000845,
+                    "count": 1,
+                    "self": 0.0003788000000035652,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 0.00204819999999728,
+                            "count": 1,
+                            "self": 0.00204819999999728
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

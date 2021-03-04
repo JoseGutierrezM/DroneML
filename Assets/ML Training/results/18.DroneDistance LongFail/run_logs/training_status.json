@@ -1,0 +1,48 @@
+{
+    "DroneFly": {
+        "checkpoints": [
+            {
+                "steps": 499955,
+                "file_path": "results\\DroneDistanceTestCase102\\DroneFly\\DroneFly-499955.onnx",
+                "reward": -1.0915073596514189,
+                "creation_time": 1613087825.5457482
+            },
+            {
+                "steps": 999950,
+                "file_path": "results\\DroneDistanceTestCase102\\DroneFly\\DroneFly-999950.onnx",
+                "reward": -0.72433317038748,
+                "creation_time": 1613097068.940075
+            },
+            {
+                "steps": 1275233,
+                "file_path": "results\\DroneDistanceTestCase102\\DroneFly\\DroneFly-1275233.onnx",
+                "reward": -0.6444998383522034,
+                "creation_time": 1613102493.591975
+            },
+            {
+                "steps": 1499945,
+                "file_path": "results\\DroneDistanceTestCase102\\DroneFly\\DroneFly-1499945.onnx",
+                "reward": -0.5564676321321919,
+                "creation_time": 1613148903.008293
+            },
+            {
+                "steps": 1788125,
+                "file_path": "results\\DroneDistanceTestCase102\\DroneFly\\DroneFly-1788125.onnx",
+                "reward": -0.5017499007284641,
+                "creation_time": 1613154730.685607
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1788125,
+            "file_path": "results\\DroneDistanceTestCase102\\DroneFly.onnx",
+            "reward": -0.5017499007284641,
+            "creation_time": 1613154730.685607
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.23.0",
+        "torch_version": "1.6.0+cu101",
+        "tensorflow_version": -1
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "DroneFly": {
+        "checkpoints": [
+            {
+                "steps": 499920,
+                "file_path": "results\\DroneDistanceTestCase03-1\\DroneFly\\DroneFly-499920.onnx",
+                "reward": 8.772717740800646,
+                "creation_time": 1613408980.7238843
+            },
+            {
+                "steps": 999977,
+                "file_path": "results\\DroneDistanceTestCase03-1\\DroneFly\\DroneFly-999977.onnx",
+                "reward": 8.58230782154971,
+                "creation_time": 1613411009.5709777
+            },
+            {
+                "steps": 1390771,
+                "file_path": "results\\DroneDistanceTestCase03-1\\DroneFly\\DroneFly-1390771.onnx",
+                "reward": 8.53738749509602,
+                "creation_time": 1613412700.9342823
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1390771,
+            "file_path": "results\\DroneDistanceTestCase03-1\\DroneFly.onnx",
+            "reward": 8.53738749509602,
+            "creation_time": 1613412700.9342823
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.23.0",
+        "torch_version": "1.6.0+cu101",
+        "tensorflow_version": -1
+    }
+}

@@ -17,8 +17,9 @@ public class DroneAgent : Agent
 
     [SerializeField] int timer = 0;
 
-    public float timeReward = -0.001f;
+    public float timeReward = -0.01f;
     float distanceReward = 0.01f;
+    float currentDistance;
 
     public override void Initialize()
     {
@@ -31,33 +32,33 @@ public class DroneAgent : Agent
         transform.position = droneInitialPosition;
         drone.SetInitialValues();
         timer = 0;
+        currentDistance = 100;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         timer++;
-    }
-
-    /*void FixedUpdate()
-    {
-        if (transform.localPosition.y >= 0)
-        //if(SimulationManager.GetInstance().SimulationMode)
+        if (drone.Information.distanceToTarget < currentDistance)
         {
-            AddNegativeReward(-0.001f);
+            AddReward(distanceReward);
+            //currentDistance = drone.Information.distanceToTarget;
         }
-    }*/
+        else if (drone.Information.distanceToTarget > currentDistance)
+        {
+            AddReward(-distanceReward * 2);
+        }
+        currentDistance = drone.Information.distanceToTarget;
+    }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(transform.position);
+        sensor.AddObservation(transform.localPosition);
 
-        //sensor.AddObservation(target.gameObject.transform.position);
+        sensor.AddObservation(target.transform.localPosition);
 
-        sensor.AddObservation(drone.droneRigidbody.velocity.x);
+        sensor.AddObservation(drone.droneRigidbody.velocity);
 
-        sensor.AddObservation(drone.droneRigidbody.velocity.y);
-
-        sensor.AddObservation(drone.droneRigidbody.velocity.z);
+        sensor.AddObservation(Vector3.Distance(transform.localPosition, target.transform.localPosition));
     }
 
     public override void OnActionReceived(float[] vectorAction)
@@ -66,17 +67,14 @@ public class DroneAgent : Agent
         drone.horizontalInputX = vectorAction[1];
         drone.horizontalInputZ = vectorAction[2];
 
-        /*if (transform.position.y < 0 || transform.position.y < target.transform.position.y || transform.position.y >= 90)
-        {
-            EndEpisodeTimer();
-        }*/
+        AddReward(-1f / MaxStep);
     }
 
     public override void Heuristic(float[] actionsOut)
     {
         actionsOut[0] = Input.GetAxis("Vertical");
-        actionsOut[1] = Input.GetAxis("HorizontalX");
-        actionsOut[2] = Input.GetAxis("HorizontalZ");
+        actionsOut[1] = Input.GetAxis("HorizontalZ");
+        actionsOut[2] = Input.GetAxis("HorizontalX");
     }
 
     public void AddPositiveReward(float amount = 1.0f)
@@ -93,9 +91,17 @@ public class DroneAgent : Agent
 
     public void EndEpisodeTimer()
     {
-        AddReward(timer * timeReward);
+        //AddReward(timer * timeReward);
         /*float distanceToTarget = Vector3.Distance(transform.position, target.gameObject.transform.position);
         AddReward((100 - distanceToTarget) * distanceReward);*/
         EndEpisode();
     }
+
+    /*private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Environment"))
+        { 
+
+        }
+    }*/
 }

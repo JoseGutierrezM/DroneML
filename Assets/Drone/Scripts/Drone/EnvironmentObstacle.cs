@@ -15,7 +15,7 @@ public class EnvironmentObstacle : MonoBehaviour
             droneAgent = collider.transform.parent.GetComponent<DroneAgent>();
             //droneAgent.AddPositiveReward(droneAgent.drone.Information.currentSpeed * goalReward - 1);
             //droneAgent.AddNegativeReward(droneAgent.drone.Information.currentSpeed * -1 + goalReward * 5);
-            droneAgent.AddNegativeReward(goalReward * 4);
+            droneAgent.AddNegativeReward(goalReward * 2);
         }
     }
 }

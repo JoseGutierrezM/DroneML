@@ -8,6 +8,8 @@ public class Drone : MonoBehaviour
     public static Action onDroneMove;
     public static Action<bool> onLandingResult;
 
+    [SerializeField] DroneTarget target;
+
     public Rigidbody droneRigidbody;
     [SerializeField] DroneBodyData dronebodyData;
     [SerializeField] List<DroneMotor> motors;
@@ -60,8 +62,8 @@ public class Drone : MonoBehaviour
         if (!SimulationManager.GetInstance().SimulationMode)
         {
             verticalInputY = Input.GetAxis("Vertical");
-            horizontalInputX = Input.GetAxis("HorizontalX");
-            horizontalInputZ = Input.GetAxis("HorizontalZ");
+            horizontalInputX = Input.GetAxis("HorizontalZ");
+            horizontalInputZ = Input.GetAxis("HorizontalX");
         }
 
         Vector3 input = new Vector3(horizontalInputX, verticalInputY, horizontalInputZ);
@@ -74,9 +76,11 @@ public class Drone : MonoBehaviour
         velocity.z = Mathf.Clamp(velocity.z, -dronebodyData.maxHorizontalSpeed, dronebodyData.maxHorizontalSpeed);
 
         droneRigidbody.velocity = velocity;
+        //MoveDrone(velocity);
 
         Information.currentSpeed = droneRigidbody.velocity.y;
         Information.currentHeight = transform.position.y;
+        Information.distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
     }
 
     void MoveDrone(Vector3 _inputForce)
